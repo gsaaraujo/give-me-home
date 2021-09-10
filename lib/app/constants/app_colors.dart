@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = ([Color(0xFF3FAB86), Color(0xFF4BD69C)]);
+  static const primaryGradient = ([Color(0xFF3FAB86), Color(0xFF4BD69C)]);
+  static const primaryNormal = Color(0xFF46C794);
   static const background = Color(0xFFFFFFFF);
 
   static const heading100 = Color(0xFF464646);
