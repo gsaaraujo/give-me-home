@@ -1,4 +1,4 @@
-class AssetsPath {
+class AppAssets {
   static const catSvg = 'assets/icons/cat.svg';
   static const checkSquare = 'assets/icons/check-square.svg';
   static const dogSvg = 'assets/icons/dog.svg';
@@ -13,4 +13,5 @@ class AssetsPath {
   static const phoneSvg = 'assets/icons/phone.svg';
   static const searchSvg = 'assets/icons/search.svg';
   static const googleSvg = 'assets/icons/google.svg';
+  static const logoPng = 'assets/splash/launch_image.png';
 }
