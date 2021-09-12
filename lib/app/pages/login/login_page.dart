@@ -3,16 +3,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
+import 'package:give_me_home/app/services/auth_services.dart';
 import 'package:give_me_home/app/widgets/login_button/login_button_widget.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
-  void handleOnTap() => {};
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Container(
@@ -31,7 +35,7 @@ class LoginPage extends StatelessWidget {
                 height: size.height * 0.1,
               ),
               SvgPicture.asset(
-                AssetsPath.footprintSvg,
+                AppAssets.footprintSvg,
                 color: Colors.white,
                 height: 150,
                 width: 140,
@@ -60,8 +64,7 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.23),
               LoginButtonWidget(
-                title: 'Connect with Google',
-                handleOnTap: handleOnTap,
+                handleOnTap: () => AuthServices().signInWithGoogle(),
               )
             ],
           ),

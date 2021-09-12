@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:give_me_home/app/pages/login/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:give_me_home/app/app.dart';
+import 'package:give_me_home/app/pages/splash/splash_page.dart';
 
-void main() => runApp(const App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const Main());
+}
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
+
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<Main> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Give me home',
-      home: LoginPage(),
-      debugShowCheckedModeBanner: false,
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {}
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const App();
+        }
+
+        return const SplashPage();
+      },
     );
   }
 }
