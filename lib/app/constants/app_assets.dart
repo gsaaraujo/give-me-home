@@ -13,5 +13,6 @@ class AppAssets {
   static const phoneSvg = 'assets/icons/phone.svg';
   static const searchSvg = 'assets/icons/search.svg';
   static const googleSvg = 'assets/icons/google.svg';
+  static const defaultPhotoPng = 'assets/icons/defaultPhoto.png';
   static const logoPng = 'assets/splash/launch_image.png';
 }
