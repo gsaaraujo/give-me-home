@@ -8,11 +8,11 @@ class AppAssets {
   static const heartSvg = 'assets/icons/heart.svg';
   static const homeSvg = 'assets/icons/home.svg';
   static const mailSvg = 'assets/icons/mail.svg';
-  static const maleSquareSvg = 'assets/icons/maleSquare.svg';
+  static const maleSquareSvg = 'assets/icons/male-square.svg';
   static const maleSvg = 'assets/icons/male.svg';
   static const phoneSvg = 'assets/icons/phone.svg';
   static const searchSvg = 'assets/icons/search.svg';
   static const googleSvg = 'assets/icons/google.svg';
-  static const defaultPhotoPng = 'assets/icons/defaultPhoto.png';
+  static const defaultPhotoJpg = 'assets/icons/defaultPhoto.jpg';
   static const logoPng = 'assets/splash/launch_image.png';
 }
