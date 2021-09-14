@@ -15,6 +15,12 @@ class AppTextStyles {
     color: AppColors.heading0,
   );
 
+  static final titleHeadingBoldHigher = GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: AppColors.heading100,
+  );
+
   static final titleHeadingRegular = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.normal,

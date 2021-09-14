@@ -5,7 +5,7 @@ import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
 
 class LoginButtonWidget extends StatelessWidget {
-  final GestureTapCallback handleOnTap;
+  final VoidCallback handleOnTap;
 
   const LoginButtonWidget({Key? key, required this.handleOnTap})
       : super(key: key);

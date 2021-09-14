@@ -3,8 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
-import 'package:give_me_home/app/services/auth_services.dart';
+import 'package:give_me_home/app/controllers/login_controller.dart';
 import 'package:give_me_home/app/widgets/login_button/login_button_widget.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,8 +16,24 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  void initState() {
+    super.initState();
+
+    final controller = context.read<LoginController>();
+
+    controller.addListener(() {
+      if (controller.isAuthFailed) {
+        const snackBar = SnackBar(content: Text('Authentication has failed.'));
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final controller = context.watch<LoginController>();
 
     return Scaffold(
       body: Container(
@@ -64,7 +81,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: size.height * 0.23),
               LoginButtonWidget(
-                handleOnTap: () => AuthServices().signInWithGoogle(),
+                handleOnTap: () {
+                  controller.isLoading ? null : controller.signInWithGoogle();
+                },
               )
             ],
           ),

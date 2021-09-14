@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
+import 'package:give_me_home/app/controllers/login_controller.dart';
 import 'package:give_me_home/app/models/user_model.dart';
 import 'package:give_me_home/app/routes/wrapper_widget.dart';
 import 'package:give_me_home/app/services/auth_services.dart';
@@ -15,7 +16,10 @@ class App extends StatelessWidget {
         StreamProvider<UserModel?>.value(
           initialData: null,
           value: AuthServices().authStateChanges(),
-        )
+        ),
+        ChangeNotifierProvider<LoginController>(
+          create: (context) => LoginController(),
+        ),
       ],
       child: MaterialApp(
         title: 'Give me home',

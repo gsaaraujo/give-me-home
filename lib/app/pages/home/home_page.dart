@@ -8,6 +8,8 @@ import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
 import 'package:give_me_home/app/models/user_model.dart';
+import 'package:give_me_home/app/services/auth_services.dart';
+import 'package:give_me_home/app/widgets/action_button/action_button_widget.dart';
 import 'package:give_me_home/app/widgets/pet_list_item/pet_list_item.dart';
 import 'package:provider/provider.dart';
 
@@ -54,11 +56,19 @@ class _HomePageState extends State<HomePage> {
                               style: AppTextStyles.titleHeadingGreatingsBold,
                             ),
                             const SizedBox(width: 20),
-                            CircleAvatar(
-                              maxRadius: 24,
-                              minRadius: 24,
-                              backgroundImage: NetworkImage(
-                                user.photoURL ?? AppAssets.defaultPhotoJpg,
+                            InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => const SignOutModal(),
+                                );
+                              },
+                              child: CircleAvatar(
+                                maxRadius: 24,
+                                minRadius: 24,
+                                backgroundImage: NetworkImage(
+                                  user.photoURL ?? AppAssets.defaultPhotoJpg,
+                                ),
                               ),
                             ),
                           ],
@@ -111,6 +121,48 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) => const PetListItem()),
           )
         ],
+      ),
+    );
+  }
+}
+
+class SignOutModal extends StatelessWidget {
+  const SignOutModal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 290,
+      decoration: const BoxDecoration(
+          color: AppColors.background,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 74),
+            Text('Would you like to leave?',
+                style: AppTextStyles.titleHeadingBoldHigher),
+            const SizedBox(height: 74),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ActionButton(
+                  title: 'No',
+                  handleOnTap: () => Navigator.pop(context),
+                ),
+                const SizedBox(width: 26),
+                ActionButton(
+                  title: 'Yes',
+                  handleOnTap: () {
+                    AuthServices().signOutWithGoogle();
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
