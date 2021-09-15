@@ -1,12 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:give_me_home/app/models/user_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:give_me_home/app/models/user_model.dart';
+import 'package:give_me_home/app/repositories/user_repository/user_repository.dart';
 
 class AuthServices {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth;
+  final FirebaseFirestore firestore;
+
+  AuthServices(this.auth, this.firestore);
 
   Stream<UserModel?> authStateChanges() {
-    return _auth.authStateChanges().map((user) {
+    return auth.authStateChanges().map((user) {
       if (user != null) {
         return UserModel(
             uid: user.uid, name: user.displayName, photoURL: user.photoURL);
@@ -16,19 +21,28 @@ class AuthServices {
     });
   }
 
-  Future signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     if (googleUser != null) {
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      try {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
 
-      await _auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
+        await UserRepository(firestore, auth).createUserIfNotExists();
+      } catch (e) {
+        throw Exception('Authentication error');
+      }
     }
+  }
+
+  Future<void> signOutWithGoogle() async {
+    await auth.signOut();
   }
 }

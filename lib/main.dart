@@ -26,7 +26,7 @@ class _AppState extends State<Main> {
         if (snapshot.hasError) {}
 
         if (snapshot.connectionState == ConnectionState.done) {
-          return const App();
+          return App();
         }
 
         return const SplashPage();
