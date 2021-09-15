@@ -10,7 +10,7 @@ import 'package:give_me_home/app/constants/app_text_styles.dart';
 import 'package:give_me_home/app/models/user_model.dart';
 import 'package:give_me_home/app/services/auth_services.dart';
 import 'package:give_me_home/app/widgets/action_button/action_button_widget.dart';
-import 'package:give_me_home/app/widgets/pet_list_item/pet_list_item.dart';
+import 'package:give_me_home/app/widgets/pet_list_item/pet_list_item_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
