@@ -4,9 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
+import 'package:give_me_home/app/models/pet_model.dart';
 
 class PetListItem extends StatelessWidget {
-  const PetListItem({Key? key}) : super(key: key);
+  final PetModel? petModel;
+
+  const PetListItem({Key? key, @required this.petModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +33,8 @@ class PetListItem extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
-                child: Image.asset(
-                  AppAssets.defaultPhotoJpg,
+                child: Image.network(
+                  petModel!.photos[0],
                   height: 180,
                   width: 180,
                   fit: BoxFit.cover,
@@ -68,12 +71,20 @@ class PetListItem extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Weston', style: AppTextStyles.titleHeadingBold),
+                        Text(
+                            petModel!.name[0].toUpperCase() +
+                                petModel!.name.substring(1),
+                            style: AppTextStyles.titleHeadingBold),
                         const SizedBox(height: 5),
-                        Text('Male', style: AppTextStyles.titleHeadingRegular),
+                        Text(
+                            petModel!.size[0].toUpperCase() +
+                                petModel!.size.substring(1),
+                            style: AppTextStyles.titleHeadingRegular),
                       ],
                     ),
-                    SvgPicture.asset(AppAssets.maleSquareSvg),
+                    petModel!.gender == 'male'
+                        ? SvgPicture.asset(AppAssets.maleSquareSvg)
+                        : SvgPicture.asset(AppAssets.femaleSquareSvg),
                   ],
                 ),
               ),

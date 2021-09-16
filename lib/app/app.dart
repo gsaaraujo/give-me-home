@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
+import 'package:give_me_home/app/controllers/home_controller.dart';
 import 'package:give_me_home/app/controllers/login_controller.dart';
 import 'package:give_me_home/app/models/user_model.dart';
 import 'package:give_me_home/app/routes/wrapper_widget.dart';
@@ -7,7 +10,10 @@ import 'package:give_me_home/app/services/auth_services.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  App({Key? key}) : super(key: key);
+
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +21,13 @@ class App extends StatelessWidget {
       providers: [
         StreamProvider<UserModel?>.value(
           initialData: null,
-          value: AuthServices().authStateChanges(),
+          value: AuthServices(_auth, _firestore).authStateChanges(),
         ),
         ChangeNotifierProvider<LoginController>(
           create: (context) => LoginController(),
+        ),
+        ChangeNotifierProvider<HomeController>(
+          create: (context) => HomeController(),
         ),
       ],
       child: MaterialApp(

@@ -13,6 +13,7 @@ class AppAssets {
   static const phoneSvg = 'assets/icons/phone.svg';
   static const searchSvg = 'assets/icons/search.svg';
   static const googleSvg = 'assets/icons/google.svg';
+  static const petEmojiPng = 'assets/icons/petEmoji.png';
   static const defaultPhotoJpg = 'assets/icons/defaultPhoto.jpg';
   static const logoPng = 'assets/splash/launch_image.png';
 }
