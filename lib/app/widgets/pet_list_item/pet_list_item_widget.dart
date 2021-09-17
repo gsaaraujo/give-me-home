@@ -18,78 +18,86 @@ class PetListItem extends StatelessWidget {
     return Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      child: Container(
-        height: 247,
-        width: size.width * 0.4,
-        decoration: BoxDecoration(
-          color: AppColors.background,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Stack(
-          children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20)),
-                child: Image.network(
-                  petModel!.photos[0],
-                  height: 180,
-                  width: 180,
-                  fit: BoxFit.cover,
+      child: InkWell(
+        enableFeedback: true,
+        onTap: () {
+          // Navigator.of(context).pushNamed('/petDetails', arguments: petModel);
+        },
+        child: Container(
+          height: 247,
+          width: size.width * 0.4,
+          decoration: BoxDecoration(
+            color: AppColors.background,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 1,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
+                  child: Image.network(
+                    petModel!.photos[0],
+                    height: 180,
+                    width: 180,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 10,
-              right: 10,
-              child: Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: AppColors.background,
-                  borderRadius: BorderRadius.circular(21),
-                ),
-                child: FloatingActionButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.favorite_border,
-                      color: AppColors.primaryNormal),
-                  backgroundColor: AppColors.background,
+              Positioned(
+                top: 10,
+                right: 10,
+                child: Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.circular(21),
+                  ),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.favorite_border,
+                        color: AppColors.primaryNormal),
+                    backgroundColor: AppColors.background,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 12,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 12,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                             petModel!.name[0].toUpperCase() +
                                 petModel!.name.substring(1),
-                            style: AppTextStyles.titleHeadingBold),
-                        const SizedBox(height: 5),
-                        Text(
+                            style: AppTextStyles.titleHeadingBold,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
                             petModel!.size[0].toUpperCase() +
                                 petModel!.size.substring(1),
-                            style: AppTextStyles.titleHeadingRegular),
-                      ],
-                    ),
-                    petModel!.gender == 'male'
-                        ? SvgPicture.asset(AppAssets.maleSquareSvg)
-                        : SvgPicture.asset(AppAssets.femaleSquareSvg),
-                  ],
+                            style: AppTextStyles.titleHeadingRegular,
+                          ),
+                        ],
+                      ),
+                      petModel!.gender == 'male'
+                          ? SvgPicture.asset(AppAssets.maleSquareSvg)
+                          : SvgPicture.asset(AppAssets.femaleSquareSvg),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

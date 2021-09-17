@@ -23,8 +23,6 @@ class _AppState extends State<Main> {
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
-        if (snapshot.hasError) {}
-
         if (snapshot.connectionState == ConnectionState.done) {
           return App();
         }
