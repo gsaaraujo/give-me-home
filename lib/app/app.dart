@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/controllers/home_controller.dart';
 import 'package:give_me_home/app/controllers/login_controller.dart';
+import 'package:give_me_home/app/controllers/pet_details_controller.dart';
 import 'package:give_me_home/app/models/user_model.dart';
 import 'package:give_me_home/app/pages/pet_details/pet_details_page.dart';
 import 'package:give_me_home/app/routes/wrapper_widget.dart';
@@ -29,6 +30,9 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider<HomeController>(
           create: (context) => HomeController(),
+        ),
+        ChangeNotifierProvider<PetDetailsController>(
+          create: (context) => PetDetailsController(),
         ),
       ],
       child: MaterialApp(

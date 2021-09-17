@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:give_me_home/app/constants/app_assets.dart';
@@ -11,7 +10,6 @@ import 'package:give_me_home/app/constants/app_text_styles.dart';
 import 'package:give_me_home/app/controllers/home_controller.dart';
 import 'package:give_me_home/app/models/pet_model.dart';
 import 'package:give_me_home/app/models/user_model.dart';
-import 'package:give_me_home/app/services/auth_services.dart';
 import 'package:give_me_home/app/widgets/action_button/action_button_widget.dart';
 import 'package:give_me_home/app/widgets/pet_list_item/pet_list_item_widget.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Text(
-                              "Hello, ${user!.name}",
+                              "Hello, ${user.name}",
                               style: AppTextStyles.titleHeadingGreatingsBold,
                             ),
                             const SizedBox(width: 20),
@@ -92,8 +90,9 @@ class _HomePageState extends State<HomePage> {
                       decoration: const BoxDecoration(
                           color: AppColors.background,
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40))),
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          )),
                       child: TextField(
                         maxLength: 30,
                         decoration: InputDecoration(
@@ -130,14 +129,14 @@ class _HomePageState extends State<HomePage> {
                       ),
                       itemCount: snap.data!.length,
                       itemBuilder: (context, index) {
-                        return PetListItem(
-                          petModel: snap.data![index],
-                        );
+                        return PetListItem(petModel: snap.data![index]);
                       },
                     ),
                   );
-                } else if (ConnectionState.waiting.toString() == 'waiting') {
-                  return SpinKitChasingDots(
+                }
+
+                return Center(
+                  child: SpinKitChasingDots(
                     itemBuilder: (BuildContext context, int index) {
                       return const DecoratedBox(
                         decoration: BoxDecoration(
@@ -146,11 +145,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                  );
-                }
-
-                return const Center(
-                  child: Text('Please try again later.'),
+                  ),
                 );
               }),
         ],
