@@ -5,6 +5,7 @@ import 'package:give_me_home/app/constants/app_assets.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 import 'package:give_me_home/app/constants/app_text_styles.dart';
 import 'package:give_me_home/app/models/pet_model.dart';
+import 'package:give_me_home/app/widgets/favorite_button/favorite_button_widget.dart';
 
 class PetListItem extends StatelessWidget {
   final PetModel? petModel;
@@ -48,22 +49,10 @@ class PetListItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 10,
                   right: 10,
-                  child: Container(
-                    width: 42,
-                    height: 42,
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      borderRadius: BorderRadius.circular(21),
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite_border,
-                          color: AppColors.primaryNormal),
-                    ),
-                  ),
+                  child: FavoriteButton(),
                 ),
                 Positioned(
                   left: 0,

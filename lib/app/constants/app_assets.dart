@@ -16,4 +16,5 @@ class AppAssets {
   static const petEmojiPng = 'assets/icons/petEmoji.png';
   static const defaultPhotoJpg = 'assets/icons/defaultPhoto.jpg';
   static const logoPng = 'assets/splash/launch_image.png';
+  static const favoriteAnimatedJson = 'assets/animations/favorite.json';
 }
