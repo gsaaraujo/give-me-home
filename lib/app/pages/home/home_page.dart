@@ -135,7 +135,8 @@ class _HomePageState extends State<HomePage> {
                   );
                 }
 
-                return Center(
+                return SizedBox(
+                  height: size.height / 2,
                   child: SpinKitChasingDots(
                     itemBuilder: (BuildContext context, int index) {
                       return const DecoratedBox(
@@ -159,6 +160,8 @@ class SignOutModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<HomeController>();
+
     return Container(
       height: 290,
       decoration: const BoxDecoration(
@@ -182,9 +185,9 @@ class SignOutModal extends StatelessWidget {
                 const SizedBox(width: 26),
                 ActionButton(
                   title: 'Yes',
-                  handleOnTap: () {
-                    // AuthServices().signOutWithGoogle();
-                    // Navigator.pop(context);
+                  handleOnTap: () async {
+                    await controller.signOut();
+                    Navigator.pop(context);
                   },
                 ),
               ],

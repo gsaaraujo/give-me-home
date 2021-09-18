@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:give_me_home/app/models/user_model.dart';
 import 'package:give_me_home/app/repositories/user_repository/user_repository.dart';
+import 'package:give_me_home/app/repositories/favorite_repository/favorite_repository.dart';
 
 class AuthServices {
   final FirebaseAuth auth;
@@ -36,6 +37,7 @@ class AuthServices {
 
         await auth.signInWithCredential(credential);
         await UserRepository(firestore, auth).createUserIfNotExists();
+        await FavoriteRepository(firestore, auth).createFavoritesIfNotExists();
       } catch (e) {
         throw Exception('Authentication error');
       }

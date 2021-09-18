@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:give_me_home/app/models/pet_model.dart';
 import 'package:give_me_home/app/repositories/pet_repository/pet_repository_interface.dart';
 
-class PetRepository implements IPetRepository {
+class PetRepository implements IPetRepositoryInterface {
   final FirebaseFirestore firestore;
 
   PetRepository(this.firestore);

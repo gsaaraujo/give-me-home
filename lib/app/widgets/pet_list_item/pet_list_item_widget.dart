@@ -49,10 +49,12 @@ class PetListItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   top: 10,
                   right: 10,
-                  child: FavoriteButton(),
+                  child: FavoriteButton(
+                    petUid: petModel!.uid,
+                  ),
                 ),
                 Positioned(
                   left: 0,

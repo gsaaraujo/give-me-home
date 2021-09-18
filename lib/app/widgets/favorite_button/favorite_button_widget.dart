@@ -1,10 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:give_me_home/app/constants/app_assets.dart';
+import 'package:give_me_home/app/repositories/favorite_repository/favorite_repository.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:give_me_home/app/constants/app_colors.dart';
 
 class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({Key? key}) : super(key: key);
+  const FavoriteButton({Key? key, required this.petUid}) : super(key: key);
+
+  final String petUid;
 
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
@@ -14,6 +19,8 @@ class _FavoriteButtonState extends State<FavoriteButton>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
   bool _isAnimatedComplete = false;
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
 
   @override
   void initState() {
@@ -55,6 +62,7 @@ class _FavoriteButtonState extends State<FavoriteButton>
       child: IconButton(
         onPressed: () {
           _isAnimatedComplete ? _controller.reverse() : _controller.forward();
+          FavoriteRepository(_firestore, _auth).addToFavorites(widget.petUid);
         },
         icon: Lottie.asset(
           AppAssets.favoriteAnimatedJson,
