@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class PetModel {
+  final String uid;
   final String name;
   final String breed;
   final String gender;
@@ -9,6 +10,7 @@ class PetModel {
   final List<String> photos;
 
   PetModel({
+    required this.uid,
     required this.name,
     required this.breed,
     required this.gender,
@@ -19,6 +21,7 @@ class PetModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'uid': uid,
       'name': name,
       'breed': breed,
       'gender': gender,
@@ -30,6 +33,7 @@ class PetModel {
 
   factory PetModel.fromMap(Map<String, dynamic> map) {
     return PetModel(
+      uid: map['uid'],
       name: map['name'],
       breed: map['breed'],
       gender: map['gender'],
