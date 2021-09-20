@@ -9,12 +9,17 @@ class HomeController extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Stream<List<PetModel>>? _petsCollection;
+
+  Stream<List<PetModel>>? get petsCollection {
+    final _petsCollection = PetRepository(_firestore).getPets();
+
+    return _petsCollection;
+  }
+
   Future<void> signOut() async {
     await AuthServices(_auth, _firestore).signOutWithGoogle();
   }
 
-  Stream<List<PetModel>> getAllPets() {
-    final petRepository = PetRepository(_firestore);
-    return petRepository.getPets();
-  }
+  void filterPetsCollection(String text) {}
 }

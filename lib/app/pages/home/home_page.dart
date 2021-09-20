@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
     final controller = context.watch<HomeController>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Text(
                               "Hello, ${user.name}",
+                              // "Hello, ${user.name}",
                               style: AppTextStyles.titleHeadingGreatingsBold,
                             ),
                             const SizedBox(width: 20),
@@ -112,12 +114,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           StreamBuilder<List<PetModel>>(
-              stream: controller.getAllPets(),
+              stream: controller.petsCollection,
               builder: (context, snap) {
                 if (snap.hasData) {
                   return SizedBox(
                     width: size.width - 40,
-                    height: size.height * 0.65,
+                    height: size.height * 0.70,
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
