@@ -22,6 +22,10 @@ class PetDetailsPage extends StatelessWidget {
     final controller = context.watch<PetDetailsController>();
     var photoIndex = controller.petPhotoIndex;
 
+    if (photoIndex > data.photos.length) {
+      photoIndex = 0;
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

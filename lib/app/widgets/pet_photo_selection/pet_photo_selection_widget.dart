@@ -17,6 +17,7 @@ class _PetPhotoSelectionState extends State<PetPhotoSelection> {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<PetDetailsController>();
+
     return InkWell(
       onTap: () {
         controller.petPhotoIndex = widget.index;

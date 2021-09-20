@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                     bottom: 0,
                     child: Container(
                       padding:
-                          const EdgeInsets.only(top: 15, left: 20, right: 20),
+                          const EdgeInsets.only(top: 40, left: 20, right: 20),
                       height: 80,
                       decoration: const BoxDecoration(
                           color: AppColors.background,
@@ -94,19 +94,8 @@ class _HomePageState extends State<HomePage> {
                             topLeft: Radius.circular(40),
                             topRight: Radius.circular(40),
                           )),
-                      child: TextField(
-                        maxLength: 30,
-                        decoration: InputDecoration(
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SvgPicture.asset(AppAssets.searchSvg),
-                          ),
-                          labelText: "Search",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
+                      child: Text('Find your friend',
+                          style: AppTextStyles.titleHeadingBold),
                     ),
                   ),
                 ],
