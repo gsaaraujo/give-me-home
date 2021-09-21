@@ -49,29 +49,26 @@ class PetDetailsPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Positioned(
-                      bottom: 0,
-                      child: Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(40)),
-                        elevation: 5,
-                        child: Container(
-                          width: 245,
-                          height: 61,
-                          decoration: const BoxDecoration(
-                            color: AppColors.primaryNormal,
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: data.photos
-                                .map((photo) => PetPhotoSelection(
-                                    petPhoto: photo,
-                                    index: data.photos.indexOf(photo).toInt()))
-                                .toList(),
-                          ),
+                  Positioned(
+                    left: (size.width / 2) - 122.5,
+                    bottom: 0,
+                    child: Material(
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
+                      elevation: 5,
+                      child: Container(
+                        width: 245,
+                        height: 61,
+                        decoration: const BoxDecoration(
+                          color: AppColors.primaryNormal,
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: data.photos
+                              .map((photo) => PetPhotoSelection(
+                                  petPhoto: photo,
+                                  index: data.photos.indexOf(photo).toInt()))
+                              .toList(),
                         ),
                       ),
                     ),
